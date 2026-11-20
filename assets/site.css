@@ -1,0 +1,101 @@
+/* Kulhad Games — one stylesheet, no scripts. Palette = the game's (CLAUDE.md § Art). */
+@font-face { font-family: "Baloo 2"; src: url("/assets/fonts/baloo2.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Mukta"; src: url("/assets/fonts/mukta-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+:root {
+  --turmeric: #E8A317; --sindoor: #B3261E; --indigo: #2B3A8C; --leaf: #3E8E41;
+  --whitewash: #F5F0E6; --terracotta: #C2603A; --ink: #2A1E14;
+  --bg: var(--whitewash); --fg: var(--ink); --muted: #6b5a49; --card: #fffaf0; --line: #e4d6bd; --link: var(--indigo);
+  --gutter: 16px; --max: 960px;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #1d1510; --fg: #f3ead9; --muted: #c4b39b; --card: #2a2019; --line: #4a3a2c; --link: #f2c25a; }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.6 "Mukta", system-ui, -apple-system, "Segoe UI", sans-serif; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+h1, h2, h3, .brand, .btn { font-family: "Baloo 2", "Mukta", system-ui, sans-serif; line-height: 1.15; }
+h1 { font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; margin: .2em 0 .3em; }
+h2 { font-size: clamp(1.4rem, 4.5vw, 1.9rem); font-weight: 700; margin: 1.6em 0 .4em; }
+h3 { font-size: 1.2rem; font-weight: 700; margin: 1.3em 0 .3em; }
+p, ul, ol { margin: 0 0 1em; }
+li { margin: .25em 0; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.prose { max-width: 720px; }
+.muted { color: var(--muted); }
+.skip { position: absolute; left: -999px; } .skip:focus { left: 8px; top: 8px; background: #fff; color: #000; padding: 8px; z-index: 9; }
+
+/* ---- truck-art bands: sindoor + white dots, turmeric stripe, hanging indigo / turmeric drops (tools/brand.swift fringe) ---- */
+.band { height: 22px; background:
+  radial-gradient(circle, var(--whitewash) 2.6px, transparent 3px) 0 50% / 18px 18px repeat-x, var(--sindoor);
+  border-bottom: 5px solid var(--turmeric); }
+.drops { height: 18px; background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='18'%3E%3Ccircle cx='11' cy='8' r='7.5' fill='%232B3A8C' stroke='%232A1E14' stroke-width='1.5'/%3E%3Ccircle cx='33' cy='8' r='7.5' fill='%23E8A317' stroke='%232A1E14' stroke-width='1.5'/%3E%3C/svg%3E") 0 0 / 44px 18px repeat-x; }
+footer .band { border-bottom: 0; border-top: 5px solid var(--turmeric); }
+footer .drops { transform: scaleY(-1); }
+
+/* ---- header ---- */
+.top { background: var(--indigo); color: #fff; }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 18px; padding-top: 10px; padding-bottom: 10px; }
+.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.45rem; display: flex; align-items: center; gap: 10px; }
+.brand .cup { width: 30px; height: 30px; flex: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: "Baloo 2", sans-serif; font-weight: 600; }
+.top nav a { color: #fff; text-decoration: none; padding: 4px 0; }
+.top nav a[aria-current] { color: var(--turmeric); border-bottom: 2px solid var(--turmeric); }
+
+main { padding: 28px 0 48px; }
+
+/* ---- truck-art frame for cards and pictures ---- */
+.frame { border: 6px solid var(--sindoor); outline: 3px dotted var(--turmeric); outline-offset: -11px; box-shadow: 0 0 0 2px var(--ink), 6px 7px 0 var(--ink); background: var(--card); border-radius: 4px; }
+.frame img { border-radius: 0; }
+
+.hero { display: grid; gap: 22px; align-items: center; }
+.hero .lead { font-size: 1.2rem; }
+.kicker { font-family: "Baloo 2", sans-serif; font-weight: 700; color: var(--sindoor); letter-spacing: .02em; margin: 0; }
+@media (prefers-color-scheme: dark) { .kicker { color: var(--turmeric); } }
+
+.gamecard { display: grid; gap: 0; overflow: hidden; margin-top: 30px; text-decoration: none; color: inherit; }
+.gamecard .body { padding: 18px 20px 22px; }
+.gamecard h2 { margin-top: 0; }
+@media (min-width: 760px) { .gamecard { grid-template-columns: 1.25fr 1fr; } .gamecard .body { align-self: center; } }
+
+.btn { display: inline-block; background: var(--turmeric); color: var(--ink); font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 10px; border: 2px solid var(--ink); box-shadow: 3px 4px 0 var(--ink); }
+.btn:hover { transform: translateY(1px); box-shadow: 2px 3px 0 var(--ink); }
+.btn.alt { background: var(--whitewash); }
+
+.badges { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0 8px; }
+.badge { display: flex; align-items: center; gap: 10px; background: #111; color: #fff; border-radius: 10px; padding: 8px 16px 8px 12px; min-width: 190px; border: 1px solid #555; opacity: .9; }
+.badge svg { width: 26px; height: 26px; flex: none; fill: #fff; }
+.badge small { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--turmeric); line-height: 1.2; }
+.badge b { font-family: "Baloo 2", sans-serif; font-size: 1.1rem; line-height: 1.2; }
+
+.shots { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 46%); gap: 14px; overflow-x: auto; padding: 6px 4px 18px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
+.shots figure { margin: 0; scroll-snap-align: start; }
+.shots img { border-radius: 10px; border: 3px solid var(--ink); }
+@media (min-width: 760px) { .shots { grid-auto-columns: minmax(150px, 1fr); } }
+
+.cols { display: grid; gap: 8px 28px; }
+@media (min-width: 760px) { .cols { grid-template-columns: 1fr 1fr; } }
+.lang-hi { font-size: 1.1rem; }
+
+details { border: 2px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; background: var(--card); }
+details[open] { border-color: var(--turmeric); }
+summary { cursor: pointer; font-family: "Baloo 2", sans-serif; font-weight: 700; font-size: 1.08rem; }
+details > :last-child { margin-bottom: 4px; }
+
+.note { border-left: 6px solid var(--turmeric); background: var(--card); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 1.2em 0; }
+table { border-collapse: collapse; width: 100%; margin: 0 0 1em; font-size: .97rem; }
+th, td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
+th { background: var(--card); font-family: "Baloo 2", sans-serif; }
+.tablewrap { overflow-x: auto; }
+
+footer { margin-top: 20px; }
+footer .inner { background: var(--indigo); color: #e9e4ff; padding: 22px 0 26px; font-size: .95rem; }
+footer a { color: #fff; }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 10px; }
+b, strong { font-family: "Baloo 2", "Mukta", system-ui, sans-serif; font-weight: 700; }
+@media (min-width: 760px) { .gamecard img { height: 100%; object-fit: cover; } }
